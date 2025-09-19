@@ -56,9 +56,8 @@ jobs:
       - name: Move projects into subfolders
         run: |
           mkdir -p ./gh-pages
-          mv ./deploy/project1-dist ./gh-pages/project1
-          mv ./deploy/project2-dist ./gh-pages/project2
-          mv ./deploy/project3-dist ./gh-pages/project3
+          mv ./deploy/ACCORDION-dist ./gh-pages/ACCORDION
+          mv ./deploy/BOOK-FINDER-APP-dist ./gh-pages/BOOK-FINDER-APP
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
