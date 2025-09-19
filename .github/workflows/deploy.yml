@@ -1,0 +1,67 @@
+name: Deploy Multiple Vite Apps
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build All Projects
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project: [ACCORDION, BOOK-FINDER-APP] # <-- replace with your actual folder names
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: |
+          cd ${{ matrix.project }}
+          npm install
+
+      - name: Build project
+        run: |
+          cd ${{ matrix.project }}
+          npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.project }}-dist
+          path: ${{ matrix.project }}/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./deploy
+
+      - name: Move projects into subfolders
+        run: |
+          mkdir -p ./gh-pages
+          mv ./deploy/project1-dist ./gh-pages/project1
+          mv ./deploy/project2-dist ./gh-pages/project2
+          mv ./deploy/project3-dist ./gh-pages/project3
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages
