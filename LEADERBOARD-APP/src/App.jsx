@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import "./App.css";
+import { FaTrophy } from "react-icons/fa6";
 
 export default function App() {
   const [players, setPlayers] = useState([]);
@@ -33,7 +35,10 @@ export default function App() {
   return (
     <div className="min-h-screen flex items-start justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
       <div className="w-full max-w-lg">
-        <h1 className="text-3xl mb-4">🏆 Leaderboard</h1>
+        <div className="flex items-center gap-3 mb-6">
+          <FaTrophy className="text-3xl text-purple-600" />
+          <h1 className="text-3xl font-medium">Leaderboard</h1>
+        </div>
 
         <div className="flex gap-2 mb-4">
           <input
@@ -51,19 +56,22 @@ export default function App() {
           />
           <button
             onClick={addPlayer}
-            className="px-4 py-2 bg-blue-500 text-white rounded"
+            className="px-4 py-2 bg-purple-500 text-white rounded cursor-pointer"
           >
             Add
           </button>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded shadow p-4">
+        <div>
           {players.length === 0 ? (
             <p className="text-sm text-gray-500">No players yet</p>
           ) : (
             <ol className="space-y-2">
               {players.map((p, i) => (
-                <li key={i} className="flex justify-between">
+                <li
+                  key={i}
+                  className="flex justify-between bg-white dark:bg-gray-800 rounded shadow p-4"
+                >
                   <span>
                     {i + 1}. {p.name}
                   </span>
@@ -77,7 +85,7 @@ export default function App() {
         <div className="mt-4 flex gap-2">
           <button
             onClick={reset}
-            className="px-4 py-2 bg-red-500 text-white rounded"
+            className="px-4 py-2 bg-red-500 text-white rounded cursor-pointer"
           >
             Reset
           </button>
