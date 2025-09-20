@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./App.css";
+import { IoGameController } from "react-icons/io5";
 
 const lines = [
   [0, 1, 2],
@@ -30,8 +32,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center">
-      <h1 className="text-3xl mb-4">🎮 Tic Tac Toe</h1>
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex flex-col items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-4 mb-4">
+        <IoGameController className="text-3xl text-purple-600" />
+        <h1 className="text-3xl font-semibold">Tic Tac Toe</h1>
+      </div>
       <div className="grid grid-cols-3 gap-2">
         {board.map((cell, i) => (
           <button
@@ -50,7 +55,7 @@ export default function App() {
 
       <button
         onClick={reset}
-        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+        className="mt-4 px-4 py-2 bg-purple-600 cursor-pointer text-white rounded"
       >
         Reset
       </button>
