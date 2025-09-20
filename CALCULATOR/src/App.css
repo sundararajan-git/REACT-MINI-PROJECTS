@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
 
+* {
+  font-family: "Rubik", sans-serif;
+}
+
 button {
-  @apply bg-red-600 p-4 rounded-[6px] font-semibold;
+  @apply bg-purple-600 p-4 rounded-[6px] font-medium cursor-pointer;
 }

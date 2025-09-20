@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { FaCalculator } from "react-icons/fa6";
 
 const App = () => {
   const [exp, setExp] = useState("");
@@ -45,8 +46,11 @@ const App = () => {
 
   return (
     <div className="w-full h-screen flex flex-col gap-4 justify-center items-center">
-      <h3>CALCULATOR</h3>
-      <section className="bg-gray-900 w-[400px] p-6 rounded-md">
+      <div className="flex items-center gap-2 mb-2">
+        <FaCalculator className="text-2xl" />
+        <h3 className="text-2xl text-purple-600 font-medium">Calculator</h3>
+      </div>
+      <section className="bg-gray-900 w-[400px] p-6 py-10 rounded-md">
         <div className="bg-white rounded-md p-2 pe-6 flex flex-col gap-4 items-end w-full">
           <span className="text-xl">{exp}</span>
           <span className="text-xl font-medium">{ans}</span>
