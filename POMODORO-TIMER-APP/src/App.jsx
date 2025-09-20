@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+import "./App.css";
+import { MdTimer } from "react-icons/md";
 
 export default function App() {
-  const [timeLeft, setTimeLeft] = useState(25 * 60); // 25 minutes
+  const [timeLeft, setTimeLeft] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
 
@@ -45,7 +47,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 p-6">
-      <h1 className="text-4xl font-bold mb-6">⏳ Pomodoro Timer</h1>
+      <div className="flex items-center gap-3 mb-8">
+        <MdTimer className="text-3xl text-purple-600" />
+        <h1 className="text-3xl font-bold">Pomodoro Timer</h1>
+      </div>
 
       <div className="text-6xl font-mono mb-6">{formatTime(timeLeft)}</div>
       <p className="mb-6 text-xl">{isBreak ? "Break Time!" : "Focus Time!"}</p>
@@ -53,13 +58,13 @@ export default function App() {
       <div className="flex gap-4">
         <button
           onClick={toggleTimer}
-          className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
+          className="px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors duration-300 cursor-pointer"
         >
           {isRunning ? "Pause" : "Start"}
         </button>
         <button
           onClick={resetTimer}
-          className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300"
+          className="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors duration-300 cursor-pointer"
         >
           Reset
         </button>
