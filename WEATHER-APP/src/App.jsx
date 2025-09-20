@@ -1,121 +1,118 @@
 import { useState } from "react";
+import {
+  FaTemperatureHigh,
+  FaCloud,
+  FaSun,
+  FaSmog,
+  FaCloudRain,
+  FaSnowflake,
+  FaWind,
+} from "react-icons/fa";
 import "./App.css";
+import { FaRegGrinBeamSweat } from "react-icons/fa";
 
 const App = () => {
   const key = import.meta.env.VITE_WEATHER_API_KEY;
   const [search, setSearch] = useState("");
-  const [result, setResult] = useState({});
-  const [name, setName] = useState("");
-  const [temp, setTemp] = useState(0);
-  const [main, setMain] = useState("");
-  const [des, setDes] = useState("");
-  const [Err, setErr] = useState(null);
-  const [isloading, setLoading] = useState(null);
-  const [text, setText] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
   const date = new Date();
-  const inputHandle = (e) => {
-    setSearch(e.target.value);
-    setText(e.target.value);
-  };
+
   const searchHandle = async () => {
+    if (!search.trim()) return;
     setLoading(true);
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${key}`
       );
       const jsonResponse = await response.json();
-      setResult(jsonResponse);
-      setName(jsonResponse.name);
-      setText(jsonResponse.name);
-      setTemp((jsonResponse.main.temp - 273.15).toFixed(2));
-      setMain(jsonResponse.weather[0].main);
-      setDes(jsonResponse.weather[0].description);
-      setErr(null);
-      setText("");
+
+      if (jsonResponse.cod !== 200) {
+        setError(jsonResponse.message);
+        setWeather(null);
+      } else {
+        setWeather({
+          name: jsonResponse.name,
+          temp: (jsonResponse.main.temp - 273.15).toFixed(1),
+          main: jsonResponse.weather[0].main,
+          description: jsonResponse.weather[0].description,
+        });
+        setError(null);
+      }
     } catch (err) {
-      setErr(err);
+      setError("Failed to fetch weather.");
     } finally {
       setLoading(false);
     }
   };
+
+  const getWeatherIcon = (main) => {
+    switch (main) {
+      case "Clouds":
+        return <FaCloud className="text-purple-600 text-4xl" />;
+      case "Clear":
+        return <FaSun className="text-yellow-500 text-4xl" />;
+      case "Haze":
+        return <FaSmog className="text-gray-500 text-4xl" />;
+      case "Rain":
+        return <FaCloudRain className="text-blue-500 text-4xl" />;
+      case "Snow":
+        return <FaSnowflake className="text-blue-300 text-4xl" />;
+      case "Wind":
+        return <FaWind className="text-green-500 text-4xl" />;
+      default:
+        return <FaCloud className="text-gray-400 text-4xl" />;
+    }
+  };
+
   return (
-    <div
-      className={
-        main === "Clouds"
-          ? "clouds"
-          : main === "Clear"
-          ? "clear"
-          : main === "Haze"
-          ? "haze"
-          : main === "Rain"
-          ? "rain"
-          : main === "Snow"
-          ? "snow"
-          : main === "Wind"
-          ? "wind"
-          : "default"
-      }
-      id="container"
-    >
-      <div className="header">
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+      <div className="flex items-center justify-center  gap-4">
+        <FaRegGrinBeamSweat className="text-3xl text-purple-600" />
+        <h1 className="text-3xl font-bold">Weather App</h1>
+      </div>
+
+      <div className="flex gap-2 w-full max-w-md">
         <input
           type="text"
-          placeholder="Enter your Location.."
-          onChange={inputHandle}
-          value={text}
+          placeholder="Enter your location..."
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-600"
         />
-        <button type="button" onClick={searchHandle}>
+        <button
+          type="button"
+          onClick={searchHandle}
+          className="px-4 py-2 bg-purple-600 cursor-pointer hover:bg-purple-700 text-white font-medium rounded-lg transition"
+        >
           Search
         </button>
       </div>
-      <div className="content">
-        <h2 className="p">Weather App</h2>
-        {isloading ? (
-          <span>loading....</span>
-        ) : (
-          <div className="report">
-            {Err !== null ? (
-              <span>Data is Not Recived..</span>
-            ) : (
-              <div className="list">
-                {typeof result.main !== "undefined" ? (
-                  <div className="items">
-                    <p>
-                      <i className="fa-solid fa-location-crosshairs"></i>
-                      {name}
-                    </p>
-                    <p>
-                      <i className="fa-solid fa-temperature-three-quarters"></i>
-                      {temp}°C
-                    </p>
-                    <p>
-                      <i
-                        className={
-                          main === "Clouds"
-                            ? " fa-solid fa-cloud"
-                            : main === "Clear"
-                            ? "fa-solid fa-sun"
-                            : main === "Haze"
-                            ? "fa-solid fa-smog"
-                            : main === "Rain"
-                            ? "fa-solid fa-cloud-rain"
-                            : main === "Snow"
-                            ? "fa-solid fa-snowflake"
-                            : main === "Wind"
-                            ? "fa-solid fa-wind"
-                            : null
-                        }
-                      ></i>
-                      {main}
-                    </p>
-                  </div>
-                ) : null}
-              </div>
-            )}
+
+      <div className="w-full max-w-md mt-4">
+        {isLoading ? (
+          <p className="text-purple-600 font-medium animate-pulse">
+            Loading...
+          </p>
+        ) : error ? (
+          <p className="text-red-500 font-medium">{error}</p>
+        ) : weather ? (
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center gap-4">
+            {getWeatherIcon(weather.main)}
+            <p className="text-xl font-semibold">{weather.name}</p>
+            <p className="flex items-center gap-2 text-lg">
+              <FaTemperatureHigh className="text-purple-600" />
+              {weather.temp}°C
+            </p>
+            <p className="capitalize">{weather.description}</p>
+            <p className="text-sm text-gray-500">{date.toLocaleDateString()}</p>
           </div>
+        ) : (
+          <p className="text-gray-500">Enter a city to see the weather 🌍</p>
         )}
       </div>
-      <p id="p">{date.toLocaleDateString()}</p>
     </div>
   );
 };
