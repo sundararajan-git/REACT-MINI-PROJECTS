@@ -1,7 +1,7 @@
-import React, { useReducer, useState } from "react";
+import { useReducer } from "react";
 import "./App.css";
+import { MdOutlineFormatAlignLeft } from "react-icons/md";
 
-// set user ------------
 const update = (initialstate, action) => {
   switch (action.type) {
     case "name":
@@ -71,116 +71,149 @@ const App = () => {
     console.log(user);
   };
   return (
-    <>
-      <div className="container">
-        <form>
-          <h1>Survey Form</h1>
-          <label htmlFor="name" className="ti">
-            Name
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 p-6">
+      <form className="w-full max-w-lg bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <MdOutlineFormatAlignLeft className="text-3xl text-purple-600" />
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 text-center">
+            Survey Form
+          </h1>
+        </div>
+
+        <label
+          htmlFor="name"
+          className="block text-gray-700 dark:text-gray-300  mb-2"
+        >
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name"
+          onChange={(e) => setuser({ type: "name", data: e })}
+          className="w-full mb-2 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <p className="text-sm text-red-500 mb-4">{out.name}</p>
+
+        <label
+          htmlFor="email"
+          className="block text-gray-700 dark:text-gray-300  mb-2"
+        >
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="sample@gmail.com"
+          onChange={(e) => setuser({ type: "email", data: e })}
+          className="w-full mb-2 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <p className="text-sm text-red-500 mb-4">{out.email}</p>
+
+        <label
+          htmlFor="age"
+          className="block text-gray-700 dark:text-gray-300  mb-2"
+        >
+          Age
+        </label>
+        <input
+          type="text"
+          id="age"
+          placeholder="Your age"
+          onChange={(e) => setuser({ type: "age", data: e })}
+          className="w-full mb-2 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        />
+        <p className="text-sm text-red-500 mb-4">{out.age}</p>
+
+        <label
+          htmlFor="select"
+          className="block text-gray-700 dark:text-gray-300  mb-2"
+        >
+          Which option best describes you?
+        </label>
+        <select
+          id="select"
+          className="w-full mb-4 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+        >
+          <option>Student</option>
+          <option>Professional</option>
+          <option>Freelancer</option>
+          <option>Others</option>
+        </select>
+
+        <label className="block text-gray-700 dark:text-gray-300  mb-2">
+          Would you recommend this website to a friend?
+        </label>
+        <div className="mb-4 space-y-2 space-x-4">
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              name="recommend"
+              className="form-radio text-purple-500 accent-current"
+            />
+            <span className="ml-2 text-gray-900 dark:text-gray-100">Yes</span>
           </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="your name"
-            onChange={(e) => {
-              setuser({ type: "name", data: e });
-            }}
-          />
-          <p>{out.name}</p>
-          <label htmlFor="email" className="ti">
-            Eamil
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              name="recommend"
+              className="form-radio text-purple-500 accent-current"
+            />
+            <span className="ml-2 text-gray-900 dark:text-gray-100">No</span>
           </label>
-          <input
-            type="email"
-            id="email"
-            placeholder="sample@gamil.com"
-            onChange={(e) => setuser({ type: "email", data: e })}
-          />
-          <p>{out.email}</p>
-          <label htmlFor="age" className="ti">
-            Age
+          <label className="inline-flex items-center">
+            <input
+              type="radio"
+              name="recommend"
+              className="form-radio text-purple-500 accent-current"
+            />
+            <span className="ml-2 text-gray-900 dark:text-gray-100">Maybe</span>
           </label>
-          <input
-            type="text"
-            id="age"
-            placeholder="your age"
-            onChange={(e) => setuser({ type: "age", data: e })}
-          />
-          <p>{out.age}</p>
-          <label htmlFor="select" className="ti">
-            Which option best describes you?
-          </label>
-          <select id="select">
-            <option>Student</option>
-            <option>Professtional</option>
-            <option>Freelancer</option>
-            <option>Others</option>
-          </select>
-          <label htmlFor="radio1" className="ti">
-            Would you recommend this website to a friend?
-          </label>
-          <div className="radio">
-            <label htmlFor="radio1">
-              <input type="radio" name="yes" id="radio1" />
-              Yes
-            </label>
-            <br />
-            <label htmlFor="radio2">
-              <input type="radio" id="radio2" name="yes" />
-              No
-            </label>
-            <br />
-            <label htmlFor="radio3">
-              <input type="radio" id="radio3" name="yes" />
-              May be
-            </label>
-            <br />
-          </div>
-          <label htmlFor="c" className="ti">
-            Anguages and Frameworks known (Check all that apply)
-          </label>
-          <div className="checkbox">
-            <input type="checkbox" id="c" />
-            <label htmlFor="c"> C</label>
-            <br />
-            <input type="checkbox" id="c++" />
-            <label htmlFor="c++"> C+</label>
-            <br />
-            <input type="checkbox" id="c#" />
-            <label htmlFor="c#"> C#</label>
-            <br />
-            <input type="checkbox" id="python" />
-            <label htmlFor="python"> Python</label>
-            <br />
-            <input type="checkbox" id="java" />
-            <label htmlFor="java"> Java</label>
-            <br />
-            <input type="checkbox" id="ruby" />
-            <label htmlFor="ruby"> Ruby</label>
-            <br />
-            <input type="checkbox" id="js" />
-            <label htmlFor="js"> Javascript</label>
-            <br />
-          </div>
-          <label htmlFor="comment" className="ti">
-            Any comments or suggestions
-          </label>
-          <div className="comments">
-            <textarea
-              id="comment"
-              placeholder="comments......."
-              onChange={(e) => setuser({ type: "comment", data: e })}
-            ></textarea>
-          </div>
-          <p>{out.comment}</p>
-          <p></p>
-          <button type="submit" onClick={validation}>
-            Submit
-          </button>
-          <br />
-        </form>
-      </div>
-    </>
+        </div>
+
+        <label className="block text-gray-700 dark:text-gray-300  mb-2">
+          Languages and Frameworks known (Check all that apply)
+        </label>
+        <div className="mb-4 flex flex-col">
+          {["C", "C++", "C#", "Python", "Java", "Ruby", "JavaScript"].map(
+            (lang) => (
+              <label key={lang} className="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  className="form-checkbox text-purple-500 accent-current"
+                />
+                <span className="ml-2 text-gray-900 dark:text-gray-100">
+                  {lang}
+                </span>
+              </label>
+            )
+          )}
+        </div>
+
+        <label
+          htmlFor="comment"
+          className="block text-gray-700 dark:text-gray-300  mb-2"
+        >
+          Any comments or suggestions
+        </label>
+        <textarea
+          id="comment"
+          placeholder="Comments..."
+          onChange={(e) => setuser({ type: "comment", data: e })}
+          className="w-full mb-2 p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          rows={4}
+        />
+        <p className="text-sm text-red-500 mb-4">{out.comment}</p>
+
+        <button
+          type="submit"
+          onClick={validation}
+          className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-colors duration-300 cursor-pointer"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 
