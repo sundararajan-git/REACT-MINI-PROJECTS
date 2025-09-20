@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./App.css";
+import { GoNumber } from "react-icons/go";
 
 export default function App() {
   const [secret, setSecret] = useState(
@@ -31,8 +33,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center">
-      <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 rounded shadow">
-        <h1 className="text-2xl mb-2">🔢 Number Guessing Game</h1>
+      <div className="max-w-md w-full mx-auto bg-white dark:bg-gray-800 p-6 rounded shadow">
+        <div className="flex items-center gap-3 mb-4">
+          <GoNumber className="text-2xl text-purple-600" />
+          <h1 className="text-2xl font-medium">Number Guessing Game</h1>
+        </div>
         <p className="mb-4 text-sm text-gray-500">{msg}</p>
 
         <form onSubmit={check} className="flex gap-2 mb-4">
@@ -44,7 +49,7 @@ export default function App() {
             max="100"
             className="flex-1 p-2 rounded border dark:bg-gray-700"
           />
-          <button className="px-4 py-2 bg-blue-500 text-white rounded">
+          <button className="px-4 py-2 bg-purple-500 text-white rounded cursor-pointer">
             Guess
           </button>
         </form>
@@ -53,7 +58,7 @@ export default function App() {
           <p>Attempts: {attempts}</p>
           <button
             onClick={reset}
-            className="px-3 py-1 bg-red-500 text-white rounded"
+            className="px-3 py-1 bg-red-500 text-white rounded cursor-pointer"
           >
             Reset
           </button>
