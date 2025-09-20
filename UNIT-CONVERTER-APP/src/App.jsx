@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./App.css";
+import { MdAcUnit } from "react-icons/md";
 
 const conversions = {
   Length: {
@@ -49,13 +51,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
-      <h1 className="text-4xl mb-6 font-bold">🧮 Unit Converter</h1>
+      <div className="flex items-center justify-center gap-4 mb-6">
+        <MdAcUnit className="text-3xl  text-purple-600" />
+        <h1 className="text-3xl font-semibold">Unit Converter</h1>
+      </div>
 
       <div className="flex flex-col gap-4 w-full max-w-md">
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
-          className="p-3 rounded border dark:bg-gray-800 dark:text-gray-100"
+          className="p-3 rounded border dark:bg-gray-900 dark:text-gray-100"
         >
           {Object.keys(conversions).map((t, i) => (
             <option key={i}>{t}</option>
@@ -67,14 +72,14 @@ export default function App() {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="Enter value"
-          className="p-3 rounded border dark:bg-gray-800 dark:text-gray-100"
+          className="p-3 rounded border dark:bg-gray-900 dark:text-gray-100"
         />
 
         <div className="flex gap-2">
           <select
             value={fromUnit}
             onChange={(e) => setFromUnit(e.target.value)}
-            className="flex-1 p-3 rounded border dark:bg-gray-800 dark:text-gray-100"
+            className="flex-1 p-3 rounded border dark:bg-gray-900 dark:text-gray-100"
           >
             {type === "Temperature"
               ? ["Celsius", "Fahrenheit", "Kelvin"]
@@ -85,7 +90,7 @@ export default function App() {
           <select
             value={toUnit}
             onChange={(e) => setToUnit(e.target.value)}
-            className="flex-1 p-3 rounded border dark:bg-gray-800 dark:text-gray-100"
+            className="flex-1 p-3 rounded border dark:bg-gray-900 dark:text-gray-100"
           >
             {type === "Temperature"
               ? ["Celsius", "Fahrenheit", "Kelvin"]
@@ -97,7 +102,7 @@ export default function App() {
 
         <button
           onClick={convert}
-          className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          className="px-6 py-3 bg-purple-500 text-white rounded hover:bg-purple-600 cursor-pointer transition-colors"
         >
           Convert
         </button>
