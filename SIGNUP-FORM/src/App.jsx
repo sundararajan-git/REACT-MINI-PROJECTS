@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "./App.css";
+import { RiFlowerFill } from "react-icons/ri";
 
 export default function App() {
   const [isLogin, setIsLogin] = useState(true);
@@ -27,7 +29,6 @@ export default function App() {
       return;
     }
 
-    // Simulate form submission
     alert(
       `${isLogin ? "Login" : "Signup"} Successful!\nEmail: ${formData.email}`
     );
@@ -37,9 +38,12 @@ export default function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-500 p-4">
       <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow p-6">
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          {isLogin ? "Login" : "Signup"}
-        </h2>
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <RiFlowerFill className="text-2xl text-purple-600" />
+          <h2 className="text-2xl font-bold text-white text-center">
+            {isLogin ? "Login" : "Signup"}
+          </h2>
+        </div>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}
 
@@ -50,7 +54,7 @@ export default function App() {
             placeholder="Email"
             value={formData.email}
             onChange={handleChange}
-            className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
+            className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-gray-100 transition-colors duration-300"
           />
 
           <input
@@ -59,7 +63,7 @@ export default function App() {
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
-            className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
+            className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-gray-100 transition-colors duration-300"
           />
 
           {!isLogin && (
@@ -69,13 +73,13 @@ export default function App() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
-              className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition-colors duration-300"
+              className="p-3 border rounded focus:outline-none focus:ring-2 focus:ring-purple-500 dark:bg-gray-800 dark:text-gray-100 transition-colors duration-300"
             />
           )}
 
           <button
             type="submit"
-            className="bg-blue-500 text-white p-3 rounded hover:bg-blue-600 transition-colors duration-300"
+            className="bg-purple-500 text-white p-3 rounded hover:bg-purple-600 cursor-pointer transition-colors duration-300"
           >
             {isLogin ? "Login" : "Signup"}
           </button>
@@ -89,7 +93,7 @@ export default function App() {
               setError("");
               setFormData({ email: "", password: "", confirmPassword: "" });
             }}
-            className="text-blue-500 hover:underline"
+            className="text-purple-500 hover:underline"
           >
             {isLogin ? "Signup" : "Login"}
           </button>
