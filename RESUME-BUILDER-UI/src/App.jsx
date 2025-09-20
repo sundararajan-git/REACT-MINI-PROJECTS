@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { FaRegFileAlt } from "react-icons/fa";
+import "./App.css";
 
 export default function App() {
   const [data, setData] = useState({
@@ -24,7 +26,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-      <h1 className="text-3xl mb-4">📑 Resume Builder</h1>
+      <div className="flex items-center justify-center gap-3 mb-8">
+        <FaRegFileAlt className="text-2xl text-purple-600" />
+        <h1 className="text-2xl font-medium">Resume Builder</h1>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-gray-800 p-4 rounded shadow">
           <h2 className="font-bold mb-2">Edit</h2>
@@ -32,53 +37,53 @@ export default function App() {
             placeholder="Name"
             value={data.name}
             onChange={(e) => update("name", e.target.value)}
-            className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+            className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
           />
           <input
             placeholder="Title"
             value={data.title}
             onChange={(e) => update("title", e.target.value)}
-            className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+            className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
           />
           <input
             placeholder="Email"
             value={data.email}
             onChange={(e) => update("email", e.target.value)}
-            className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+            className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
           />
           <input
             placeholder="Phone"
             value={data.phone}
             onChange={(e) => update("phone", e.target.value)}
-            className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+            className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
           />
           <textarea
             placeholder="Summary"
             value={data.summary}
             onChange={(e) => update("summary", e.target.value)}
-            className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+            className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
           />
 
-          <h3 className="font-semibold mt-3">Experience</h3>
+          <h3 className="font-semibold mt-3 mb-3">Experience</h3>
           {data.experiences.map((exp, i) => (
             <div key={i} className="mb-2">
               <input
                 placeholder="Company"
                 value={exp.company}
                 onChange={(e) => updateExp(i, "company", e.target.value)}
-                className="w-full p-2 mb-1 rounded border dark:bg-gray-700"
+                className="w-full p-2 mb-1 rounded border dark:bg-gray-800"
               />
               <input
                 placeholder="Role"
                 value={exp.role}
                 onChange={(e) => updateExp(i, "role", e.target.value)}
-                className="w-full p-2 mb-1 rounded border dark:bg-gray-700"
+                className="w-full p-2 mb-1 rounded border dark:bg-gray-800"
               />
               <input
                 placeholder="Years"
                 value={exp.years}
                 onChange={(e) => updateExp(i, "years", e.target.value)}
-                className="w-full p-2 mb-2 rounded border dark:bg-gray-700"
+                className="w-full p-2 mb-2 rounded border dark:bg-gray-800"
               />
             </div>
           ))}
