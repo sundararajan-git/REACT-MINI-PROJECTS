@@ -1,17 +1,6 @@
 import { useState } from "react";
-
-const emojis = [
-  { symbol: "😀", name: "grinning face" },
-  { symbol: "😂", name: "face with tears of joy" },
-  { symbol: "😍", name: "smiling face with heart-eyes" },
-  { symbol: "😎", name: "smiling face with sunglasses" },
-  { symbol: "👍", name: "thumbs up" },
-  { symbol: "🙏", name: "folded hands" },
-  { symbol: "🔥", name: "fire" },
-  { symbol: "🌟", name: "glowing star" },
-  { symbol: "💯", name: "hundred points" },
-  { symbol: "🎉", name: "party popper" },
-];
+import { BsEmojiLaughingFill } from "react-icons/bs";
+import "./App.css";
 
 const App = () => {
   const [search, setSearch] = useState("");
@@ -26,13 +15,16 @@ const App = () => {
   };
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 p-6">
-      <h1 className="text-4xl text-center mb-6">Emoji Search App</h1>
+      <div className="flex items-center gap-3 mb-6">
+        <BsEmojiLaughingFill className="text-4xl text-purple-600" />
+        <h1 className="text-4xl text-center">Emoji Search App</h1>
+      </div>
       <input
         type="text"
         placeholder="Search emoji..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
+        className="w-full p-3 rounded-lg border focus:outline-none focus:ring-2 focus:ring-purple-500 mb-6 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300"
       />
 
       <div className="grid grid-cols-4 md:grid-cols-6 gap-4">
@@ -52,3 +44,16 @@ const App = () => {
 };
 
 export default App;
+
+const emojis = [
+  { symbol: "😀", name: "grinning face" },
+  { symbol: "😂", name: "face with tears of joy" },
+  { symbol: "😍", name: "smiling face with heart-eyes" },
+  { symbol: "😎", name: "smiling face with sunglasses" },
+  { symbol: "👍", name: "thumbs up" },
+  { symbol: "🙏", name: "folded hands" },
+  { symbol: "🔥", name: "fire" },
+  { symbol: "🌟", name: "glowing star" },
+  { symbol: "💯", name: "hundred points" },
+  { symbol: "🎉", name: "party popper" },
+];
