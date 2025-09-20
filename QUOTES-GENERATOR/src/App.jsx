@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import "./App.css";
+import { BsChatSquareQuote } from "react-icons/bs";
 
 const App = () => {
   const [quoteData, setQuoteData] = useState(null);
@@ -29,20 +31,36 @@ const App = () => {
   };
 
   return (
-    <div>
-      {isLoading ? (
-        <p>Loading</p>
-      ) : (
-        <div>
-          <q>{quoteData?.quote}</q>
-          <p>{quoteData?.author}</p>
+    <section className="w-ful h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-md p-6 bg-white shadow-lg rounded-lg text-center">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <BsChatSquareQuote className="text-2xl" />
+          <h2 className="text-purple-600  font-semibold text-2xl">
+            Quote Generator
+          </h2>
         </div>
-      )}
-      {isError ? <p>Error</p> : null}
-      <button type="button" onClick={getQuote}>
-        Random
-      </button>
-    </div>
+        {isLoading ? (
+          <p className="text-gray-500 animate-pulse p-10">Loading...</p>
+        ) : isError ? (
+          <p className="text-red-500 font-semibold">Something went wrong!</p>
+        ) : (
+          <div className="mb-4">
+            <q className="text-lg italic text-gray-700">{quoteData?.quote}</q>
+            <p className="mt-2 font-semibold text-gray-800">
+              - {quoteData?.author}
+            </p>
+          </div>
+        )}
+
+        <button
+          type="button"
+          onClick={getQuote}
+          className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-md font-semibold mt-4 cursor-pointer"
+        >
+          Random
+        </button>
+      </div>
+    </section>
   );
 };
 
