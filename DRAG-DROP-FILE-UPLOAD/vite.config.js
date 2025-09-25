@@ -6,4 +6,5 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: "/REACT-MINI-PROJECTS/DRAG-DROP-FILE-UPLOAD/",
 })
