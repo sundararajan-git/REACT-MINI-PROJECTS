@@ -12,7 +12,42 @@ jobs:
 
     strategy:
       matrix:
-        project: [ACCORDION, BOOK-FINDER-APP] # <-- replace with your actual folder names
+        project: [
+            ACCORDION,
+            BOOK-FINDER-APP,
+            CALCULATOR,
+            CALENDAR-UI,
+            COLOR-PICKER-APP,
+            COUNTER-APP,
+            DIGITAL-CLOCK,
+            DRAG-DROP-FILE-UPLOAD,
+            EMOJI-SEARCH-APP,
+            FORM-VALIDATION,
+            INVOICE-GENERATOR-APP,
+            LEADERBOARD-APP,
+            MARKDOWN-PREVIEWER,
+            MEMORY-MATCH-GAME,
+            MOVIE-SEARCH-APP,
+            MULTI-STEP-FORM,
+            MUSIC-PLAYER-UI,
+            NOTES-APP,
+            NUMBER-GUESS-GAME,
+            POMODORO-TIMER-APP,
+            PRODUCT-SHOWCASE,
+            QR-CODE-GENERATOR,
+            QUOTES-GENERATOR,
+            REACT-CHART-APP,
+            RESUME-BUILDER-UI,
+            SEARCHABLE-FILTER-LIST,
+            SIGNUP-FORM,
+            STICKY-NOTES-BOARD,
+            TEXT-UTILS-APP,
+            THEME-SWITCH,
+            TIC-TAC-TOE-GAME,
+            TO-DO-LIST-APP,
+            UNIT-CONVERTER-APP,
+            WEATHER-APP,
+          ] # <-- replace with your actual folder names
 
     steps:
       - name: Checkout repo
@@ -58,6 +93,38 @@ jobs:
           mkdir -p ./gh-pages
           mv ./deploy/ACCORDION-dist ./gh-pages/ACCORDION
           mv ./deploy/BOOK-FINDER-APP-dist ./gh-pages/BOOK-FINDER-APP
+          mv ./deploy/CALCULATOR-dist ./gh-pages/CALCULATOR
+          mv ./deploy/CALENDAR-UI-dist ./gh-pages/CALENDAR-UI
+          mv ./deploy/COLOR-PICKER-APP-dist ./gh-pages/COLOR-PICKER-APP
+          mv ./deploy/COUNTER-APP-dist ./gh-pages/COUNTER-APP
+          mv ./deploy/DIGITAL-CLOCK-dist ./gh-pages/DIGITAL-CLOCK
+          mv ./deploy/DRAG-DROP-FILE-UPLOAD-dist ./gh-pages/DRAG-DROP-FILE-UPLOAD
+          mv ./deploy/EMOJI-SEARCH-APP-dist ./gh-pages/EMOJI-SEARCH-APP
+          mv ./deploy/FORM-VALIDATION-dist ./gh-pages/FORM-VALIDATION
+          mv ./deploy/INVOICE-GENERATOR-APP-dist ./gh-pages/INVOICE-GENERATOR-APP
+          mv ./deploy/LEADERBOARD-APP-dist ./gh-pages/LEADERBOARD-APP
+          mv ./deploy/MARKDOWN-PREVIEWER-dist ./gh-pages/MARKDOWN-PREVIEWER
+          mv ./deploy/MEMORY-MATCH-GAME-dist ./gh-pages/MEMORY-MATCH-GAME
+          mv ./deploy/MOVIE-SEARCH-APP-dist ./gh-pages/MOVIE-SEARCH-APP
+          mv ./deploy/MULTI-STEP-FORM-dist ./gh-pages/MULTI-STEP-FORM
+          mv ./deploy/MUSIC-PLAYER-UI-dist ./gh-pages/MUSIC-PLAYER-UI
+          mv ./deploy/NOTES-APP-dist ./gh-pages/NOTES-APP
+          mv ./deploy/NUMBER-GUESS-GAME-dist ./gh-pages/NUMBER-GUESS-GAME
+          mv ./deploy/POMODORO-TIMER-APP-dist ./gh-pages/POMODORO-TIMER-APP
+          mv ./deploy/PRODUCT-SHOWCASE-dist ./gh-pages/PRODUCT-SHOWCASE
+          mv ./deploy/QR-CODE-GENERATOR-dist ./gh-pages/QR-CODE-GENERATOR
+          mv ./deploy/QUOTES-GENERATOR-dist ./gh-pages/QUOTES-GENERATOR
+          mv ./deploy/REACT-CHART-APP-dist ./gh-pages/REACT-CHART-APP
+          mv ./deploy/RESUME-BUILDER-UI-dist ./gh-pages/RESUME-BUILDER-UI
+          mv ./deploy/SEARCHABLE-FILTER-LIST-dist ./gh-pages/SEARCHABLE-FILTER-LIST
+          mv ./deploy/SIGNUP-FORM-dist ./gh-pages/SIGNUP-FORM
+          mv ./deploy/STICKY-NOTES-BOARD-dist ./gh-pages/STICKY-NOTES-BOARD
+          mv ./deploy/TEXT-UTILS-APP-dist ./gh-pages/TEXT-UTILS-APP
+          mv ./deploy/THEME-SWITCH-dist ./gh-pages/THEME-SWITCH
+          mv ./deploy/TIC-TAC-TOE-GAME-dist ./gh-pages/TIC-TAC-TOE-GAME
+          mv ./deploy/TO-DO-LIST-APP-dist ./gh-pages/TO-DO-LIST-APP
+          mv ./deploy/UNIT-CONVERTER-APP-dist ./gh-pages/UNIT-CONVERTER-APP
+          mv ./deploy/WEATHER-APP-dist ./gh-pages/WEATHER-APP
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
