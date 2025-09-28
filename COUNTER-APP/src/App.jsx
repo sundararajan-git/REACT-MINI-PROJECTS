@@ -10,7 +10,7 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center  w-full h-screen">
+    <div className="flex flex-col gap-4 justify-center items-center  w-full h-screen bg-white">
       <div className="flex items-center gap-3">
         <SiCountingworkspro className="text-2xl" />
         <h1 className="font-semibold text-2xl text-purple-600">Counter</h1>

@@ -45,7 +45,7 @@ const App = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col gap-4 justify-center items-center">
+    <div className="w-full h-screen flex flex-col gap-4 justify-center items-center bg-white">
       <div className="flex items-center gap-2 mb-2">
         <FaCalculator className="text-2xl" />
         <h3 className="text-2xl text-purple-600 font-medium">Calculator</h3>

@@ -13,7 +13,7 @@ const App = () => {
   };
 
   return (
-    <section className="w-full h-screen flex items-center justify-center">
+    <section className="w-full h-screen flex items-center justify-center bg-white">
       <div className="max-w-md mx-auto p-6 bg-white shadow-lg rounded-lg text-center">
         <div className="flex items-center justify-center gap-3 mb-6">
           <IoQrCodeOutline className="text-2xl text-purple-600" />

@@ -34,7 +34,7 @@ const App = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 text-center">
+    <div className="max-w-xl mx-auto p-6 text-center bg-white">
       <div className="flex items-center justify-center gap-3 mb-8">
         <MdLocalMovies className="text-3xl" />
         <h1 className="text-3xl font-medium text-purple-600">
